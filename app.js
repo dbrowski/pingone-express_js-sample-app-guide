@@ -18,7 +18,7 @@ require("dotenv").config();
  * Then, fill in your values in that file.
  */
 // PingOne auth base url
-const authBasePath = process.env.PINGONE_AUTH_BASE_URL;
+const authBaseURL = process.env.PINGONE_AUTH_BASE_URL;
 // PingOne environment ID
 const envID = process.env.PINGONE_ENV_ID;
 // PingOne client ID of the app connection
@@ -26,7 +26,7 @@ const clientID = process.env.PINGONE_CLIENT_ID;
 // PingOne client secret of the app connection
 const clientSecret = process.env.PINGONE_CLIENT_SECRET;
 // Express app base url
-const appBasePath = process.env.APP_BASE_URL;
+const appBaseURL = process.env.APP_BASE_URL;
 
 /**
  * Some constants we'll need for an OAuth/OIDC Authorization Code flow.
@@ -36,7 +36,7 @@ const appBasePath = process.env.APP_BASE_URL;
 const callbackPath = "/callback";
 // The full url where the user is redirected after authenticating/authorizing
 // with PingOne.
-const redirectURI = appBasePath + ":" + port + callbackPath;
+const redirectURI = appBaseURL + ":" + port + callbackPath;
 // Scopes specify what kind of access the client is requesting from the user.
 // These are some standard OIDC scopes.
 //   openid - signals an OIDC request; default resource on oauth/oidc app
