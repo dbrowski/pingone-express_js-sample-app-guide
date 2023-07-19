@@ -26,6 +26,10 @@ const appBaseURL = process.env.APP_BASE_URL;
 /**
  * Some constants we'll need for an OAuth/OIDC Authorization Code flow.
  */
+// PingOne authorize endpoint
+const authorizeEndpoint = "/as/authorize";
+// PingOne token endpoint
+const tokenEndpoint = "/as/token";
 // The url path made available for when the user is redirected back from the
 // authorization server, PingOne.
 const callbackPath = "/callback";
@@ -51,8 +55,32 @@ const scopes = "openid";
 const grantType = "authorization_code";
 const responseType = "code";
 
+/**
+ * Create the authorization request.
+ * When someone navigates to the root path,
+ * "/", a basic link with the text "Login" is sent to be rendered by the
+ * browser.
+ * Clicking the link will redirect the user to PingOne with the
+ * authorization request parameters.
+ * The user is then prompted to authenticate.
+ */
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  // authorize url path
+  const authzPath = envID + authorizeEndpoint;
+  // authorize request starting with the url origin and path.
+  const authzReq = new URL(path, authBaseURL);
+
+  // Add query parameters to define the authorize request
+  authzReq.searchParams.append("redirect_uri", redirectURI);
+  authzReq.searchParams.append("client_id", clientID);
+  authzReq.searchParams.append("scope", scopes);
+  authzReq.searchParams.append("response_type", responseType);
+
+  // Send a link to the browser to render with the text "Login".
+  // When the link is clicked the user is redirected to the authorization
+  // server, PingOne, at the authorize endpoint. The query parameters are read
+  // by PingOne and combine to make the authorization request.
+  res.status(200).send("<a href=" + authzReq.toString() + ">Login</a>");
 });
 
 app.listen(port, () => {
