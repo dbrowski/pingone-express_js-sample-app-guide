@@ -1,9 +1,4 @@
 /**
- * This is the Hello world example from Express
- * https://expressjs.com/en/starter/hello-world.html
- */
-
-/**
  * Express Server Config and Initialization
  */
 const express = require("express");
