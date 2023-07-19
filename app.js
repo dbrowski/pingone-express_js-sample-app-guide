@@ -50,8 +50,9 @@ const redirectURI = appBasePath + ":" + port + callbackPath;
 // PingOne - specific scope)
 const scopes = "openid";
 // The OAuth 2.0 grant type and associated type of response expected from the
-// /authorize endpoint.
-// i.e., code, authorization_code - Authorization Code;
+// /authorize endpoint. The Authorization Code flow is recommended as the best
+// practice in most cases
+// https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-23
 const grantType = "authorization_code";
 const responseType = "code";
 
