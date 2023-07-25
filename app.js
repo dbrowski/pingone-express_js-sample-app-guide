@@ -108,7 +108,9 @@ const responseType = "code";
  * The user is then prompted to authenticate.
  */
 app.get("/", (req, res) => {
-  // authorize url path
+  // Authorization server's authorize endpoint's url path
+  // e.g.,
+  // "z2345678-0000-456c-a657-3a21fc9ece7e/as/authorize"
   const authzPath = envID + authorizeEndpoint;
   // authorize request starting with the url origin and path.
   const authzReq = new URL(path, authBaseURL);
