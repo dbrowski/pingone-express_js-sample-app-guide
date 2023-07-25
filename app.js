@@ -128,6 +128,6 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
   console.log(
-    `The PingOne sample Express app has started listening on ${authBaseURL}:${port}`
+    `The PingOne sample Express app has started listening on ${appBaseURL}:${port}`
   );
 });
