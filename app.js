@@ -1,4 +1,34 @@
 /**
+ * PingOne Express.js Sample App
+ *
+ * This is an extremely simplified web app using Express.js on the backend which
+ * demonstrates how to use PingOne to authenticate your users.
+ *
+ *
+ * Some terminology which might be helpful -
+ *
+ * Client --------------- This express app running in nodejs.
+ *                        It's considered "private" because it runs server-side
+ *                        and can keep a secret, well, secret (as opposed to a
+ *                        SPA/client-side app which sends everything to the
+ *                        browser/frontend).
+ *
+ * Authorization Server - PingOne is the mutually trusted (by the user and
+ *                        the client) 3rd party handling authentication and
+ *                        authorization.
+ *
+ * Resource Owner ------- The authenticating user.
+ *
+ * OAuth (2.0) ---------- The authorization framework.
+ *                        And, the Authorization Code flow, is generally the
+ *                        flow to start with in order to comply with best
+ *                        practice.
+ *
+ * OIDC ----------------- The authentication framework which layers on top of
+ *                        OAuth 2.0
+ */
+
+/**
  * Express Server Config and Initialization
  */
 const express = require("express");
@@ -9,8 +39,21 @@ const port = 3000;
 require("dotenv").config();
 
 /**
- * First, copy the .env.EXAMPLE file to a .env file.
- * Then, fill in your values in that file.
+ * To start, copy the '.env.EXAMPLE' file
+ * And, rename the new file as '.env'
+ * Then, fill in your values.
+ *
+ * On how to get those values...
+ * If you don't already have a PingOne account, you can start a trial at:
+ * pingidentity.com/en/try-ping
+ *
+ * You'll want to register your app with PingOne to start using PingOne's
+ * services. If you navigate to Connections > Applications in the PingOne Admin
+ * Console, you can create a new App Connection (OIDC Web App) which represents
+ * your app's registration. After creating your App Connection, you can
+ * navigate to the Configuration tab where you can find these values. Don't
+ * forget to set the redirect_uri to be http://localhost:3000/callback (if the
+ * app base URL, port, and path have not been customized)
  */
 // PingOne auth base url
 const authBaseURL = process.env.PINGONE_AUTH_BASE_URL;
@@ -84,5 +127,7 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(
+    `The PingOne sample Express app has started listening on ${authBaseURL}:${port}`
+  );
 });
