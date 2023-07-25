@@ -113,7 +113,7 @@ app.get("/", (req, res) => {
   // "z2345678-0000-456c-a657-3a21fc9ece7e/as/authorize"
   const authzPath = envID + authorizeEndpoint;
   // authorize request starting with the url origin and path.
-  const authzReq = new URL(path, authBaseURL);
+  const authzReq = new URL(authzPath, authBaseURL);
 
   // Add query parameters to define the authorize request
   authzReq.searchParams.append("redirect_uri", redirectURI);
