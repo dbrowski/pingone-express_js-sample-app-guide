@@ -109,13 +109,14 @@ const grantType = "authorization_code";
 const responseType = "code";
 
 /**
- * Create the authorization request.
- * When someone navigates to the root path,
- * "/", a basic link with the text "Login" is sent to be rendered by the
- * browser.
- * Clicking the link will redirect the user to PingOne with the
- * authorization request parameters.
- * The user is then prompted to authenticate.
+ * Root path - /
+ *
+ * Creates and serves the authorization request as a plain link.
+ *
+ * When someone navigates their browser, or user agent, to the root path, "/", a
+ * basic link with the text "Login" is rendered. Clicking the link will redirect
+ * the user to PingOne with the authorization request parameters. The user is
+ * then prompted to authenticate.
  */
 app.get("/", (req, res) => {
   // Authorization server's authorize endpoint's url path
