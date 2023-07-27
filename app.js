@@ -139,6 +139,7 @@ app.get("/", (req, res) => {
   res.status(200).send("<a href=" + authzReq.toString() + ">Login</a>");
 });
 
+// Express app "has started" message
 app.listen(port, () => {
   console.log(
     `The PingOne sample Express app has started listening on ${appBaseURL}:${port}`
