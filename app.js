@@ -39,8 +39,8 @@ const port = 3000;
 require("dotenv").config();
 
 /**
- * To start, copy the '.env.EXAMPLE' file
- * And, rename the new file as '.env'
+ * To start, copy the '.env.EXAMPLE' file.
+ * And, rename the new file as '.env'.
  * Then, fill in your values.
  *
  * On how to get those values...
@@ -48,27 +48,37 @@ require("dotenv").config();
  * pingidentity.com/en/try-ping
  *
  * You'll want to register your app with PingOne to start using PingOne's
- * services. If you navigate to Connections > Applications in the PingOne Admin
- * Console, you can create a new App Connection (OIDC Web App) which represents
- * your app's registration. After creating your App Connection, you can
- * navigate to the Configuration tab where you can find these values. Don't
- * forget to set the redirect_uri to be http://localhost:3000/callback (if the
- * app base URL, port, and path have not been customized)
+ * services.
+ *
+ * If you navigate to Connections > Applications in the PingOne Admin Console,
+ * you can create a new App Connection (OIDC Web App) which will represent your
+ * app's registration with PingOne.
+ *
+ * After creating your App Connection, you can navigate to the Configuration tab
+ * where you'll find these config values to add to your '.env' file.
+ *
+ * On the app connection, don't forget to set the redirect_uri to be http://
+ * localhost:3000/callback (default for this app).
+ *
+ * Finally, don't forget to click the toggle in the top right to turn it on!
  */
-// PingOne auth base url
+// PingOne Auth (authentication/authorization) base url
 const authBaseURL = process.env.PINGONE_AUTH_BASE_URL;
-// PingOne environment ID
+// PingOne Environment ID
 const envID = process.env.PINGONE_ENV_ID;
-// PingOne client ID of the app connection
+// PingOne Client ID of the App Connection
 const clientID = process.env.PINGONE_CLIENT_ID;
-// PingOne client secret of the app connection
+// PingOne Client Secret of the App Connection
 const clientSecret = process.env.PINGONE_CLIENT_SECRET;
-// Express app base url
+// Express app (this app) base url
 const appBaseURL = process.env.APP_BASE_URL;
 
 /**
- * Some constants we'll need for an OAuth/OIDC Authorization Code flow.
+ * Some constants we'll need for an OAuth/OIDC Authorization Code flow (aka how
+ * we'll authenticate users).
  */
+// This app's base origin
+const appBaseOrigin = appBaseURL + ":" + port;
 // PingOne authorize endpoint
 const authorizeEndpoint = "/as/authorize";
 // PingOne token endpoint
