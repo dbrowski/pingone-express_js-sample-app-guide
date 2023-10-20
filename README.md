@@ -411,7 +411,7 @@ You've just walked through the steps to authenticate a user with PingOne! The re
 ## Common Errors and Potential Solutions
 
 - If PingOne sends a redirect_uri mismatch error, check the PingOne app connection and that you've entered the redirect uri correctly.
-- If PingOne sends a resource could not be found error, check the auth base url and that the App Connection has been turned on (flip the toggle on the app conenction)
+- If PingOne sends a resource could not be found error, check the auth base url and that the App Connection has been turned on (flip the toggle on the app connection)
 - If you're having trouble authenticating with a user, make sure that user's identity exists in the same environment as the App Connection.
 - If you have problems just running `npm run <step + #>`, delete `node_modules` and `package-lock.json` and run the `npm install` again. Then try starting the app again.
 - If you see the following error in the terminal after clicking the Login link in Step 3
